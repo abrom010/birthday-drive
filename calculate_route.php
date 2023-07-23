@@ -88,7 +88,7 @@ function insert_item(&$arr, $value, $index) {
 	}
 }
 
-function backtrack($current_travel_duration, $current_route, $unvisited_locations, $location_count, &$min_travel_duration, $origin_location, $route_graph, &$optimal_route) {
+function helper($current_travel_duration, $current_route, $unvisited_locations, $location_count, &$min_travel_duration, $origin_location, $route_graph, &$optimal_route) {
 	if($current_travel_duration > $min_travel_duration) return;
 	if(count($current_route) == $location_count) {
 		$min_travel_duration = $current_travel_duration;
@@ -105,7 +105,7 @@ function backtrack($current_travel_duration, $current_route, $unvisited_location
 		$current_travel_duration += $route_graph[$last_location][$next_location];
 		$index = remove_item($unvisited_locations, $next_location);
 
-		backtrack($current_travel_duration, [...$current_route], [...$unvisited_locations], $location_count, $min_travel_duration, $origin_location, $route_graph, $optimal_route);
+		helper($current_travel_duration, [...$current_route], [...$unvisited_locations], $location_count, $min_travel_duration, $origin_location, $route_graph, $optimal_route);
 
 		array_pop($current_route);
 		$current_travel_duration -= $route_graph[$last_location][$next_location];
@@ -134,7 +134,7 @@ function calculate_optimal_route($online, $addresses, $route_graph) {
 		if($location==$origin_location) continue;
 		$unvisited_locations = $addresses;
 		$index = remove_item($unvisited_locations, $location);
-		backtrack(0, array($location), [...$unvisited_locations], $location_count, $min_travel_duration, $origin_location, $route_graph, $optimal_route);
+		helper(0, array($location), [...$unvisited_locations], $location_count, $min_travel_duration, $origin_location, $route_graph, $optimal_route);
 		insert_item($unvisited_locations, $location, $index);
 	}
 
