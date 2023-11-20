@@ -3,12 +3,15 @@
 <meta charset="UTF-8">
 <title>Birthday Drive</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <body>
 <div class="root-div">
-	<div class="nav-bar">
+	<!-- <div class="nav-bar">
 		<a href="#">Sign in</a>
-	</div>
+	</div> -->
 	<div class="about">
 		<h1>Birthday Drive</h1>
 		<p>
